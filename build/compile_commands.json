@@ -1,0 +1,26 @@
+[
+{
+  "directory": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build",
+  "command": "D:\\visual_studio\\product\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -external:ID:\\opencv\\opencv\\build\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\main.dir\\main.cpp.obj /FdCMakeFiles\\main.dir\\ /FS -c D:\\programLearning\\SchoolOfTheRobotTechnology\\ProjectDesign2\\Project_01\\main.cpp",
+  "file": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/main.cpp",
+  "output": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build/CMakeFiles/main.dir/main.cpp.obj"
+},
+{
+  "directory": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build",
+  "command": "D:\\visual_studio\\product\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -external:ID:\\opencv\\opencv\\build\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\main.dir\\Operation\\Operation.cpp.obj /FdCMakeFiles\\main.dir\\ /FS -c D:\\programLearning\\SchoolOfTheRobotTechnology\\ProjectDesign2\\Project_01\\Operation\\Operation.cpp",
+  "file": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/Operation/Operation.cpp",
+  "output": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build/CMakeFiles/main.dir/Operation/Operation.cpp.obj"
+},
+{
+  "directory": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build",
+  "command": "D:\\visual_studio\\product\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -external:ID:\\opencv\\opencv\\build\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\main.dir\\BlackLine01\\BlackLine.cpp.obj /FdCMakeFiles\\main.dir\\ /FS -c D:\\programLearning\\SchoolOfTheRobotTechnology\\ProjectDesign2\\Project_01\\BlackLine01\\BlackLine.cpp",
+  "file": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/BlackLine01/BlackLine.cpp",
+  "output": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build/CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.obj"
+},
+{
+  "directory": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build",
+  "command": "D:\\visual_studio\\product\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -external:ID:\\opencv\\opencv\\build\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\main.dir\\TrafficLight02\\TrafficLight02.cpp.obj /FdCMakeFiles\\main.dir\\ /FS -c D:\\programLearning\\SchoolOfTheRobotTechnology\\ProjectDesign2\\Project_01\\TrafficLight02\\TrafficLight02.cpp",
+  "file": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/TrafficLight02/TrafficLight02.cpp",
+  "output": "D:/programLearning/SchoolOfTheRobotTechnology/ProjectDesign2/Project_01/build/CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.obj"
+}
+]
