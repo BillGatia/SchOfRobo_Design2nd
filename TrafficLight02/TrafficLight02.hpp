@@ -13,17 +13,17 @@ private:
 
     // BGR颜色范围的Scalar表示
     // BGR颜色范围的Scalar表示
-    cv::Scalar redScalarLow_ = cv::Scalar(100, 100, 200);
-    cv::Scalar redScalarHigh_ = cv::Scalar(200, 200, 255);
+    cv::Scalar redScalarLow_ = cv::Scalar(85, 125, 175);
+    cv::Scalar redScalarHigh_ = cv::Scalar(165, 205, 225);
 
     cv::Scalar greenScalarLow_ = cv::Scalar(150, 200, 200);
-    cv::Scalar greenScalarHigh_ = cv::Scalar(210, 255, 255);
+    cv::Scalar greenScalarHigh_ = cv::Scalar(230, 255, 255);
     // cv::Scalar redScalarLow_ = cv::Scalar(140, 140, 225);
     // cv::Scalar redScalarHigh_ = cv::Scalar(200, 210, 255);
     // cv::Scalar greenScalarLow_ = cv::Scalar(200, 230, 230);
     // cv::Scalar greenScalarHigh_ = cv::Scalar(240, 255, 255);
 
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(2, 2));
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
 
 public:
     TrafficLight02();

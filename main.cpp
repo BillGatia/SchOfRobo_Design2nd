@@ -13,7 +13,7 @@ int main()
     BlackLine bl;
     TrafficLight02 tl;
 
-    VideoCapture cap(0);
+    VideoCapture cap(1);
     Mat frame;
     Mat frame_BL, frame_TL;
 

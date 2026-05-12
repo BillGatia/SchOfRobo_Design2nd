@@ -22,7 +22,10 @@ TrafficLight02::~TrafficLight02()
 
 int *TrafficLight02::Read(Mat frame)
 {
-    Mat blurred, redMask, greenMask, redOpened, greenOpened ,redClosed , greenClosed , redContours, greenContours;
+    Mat blurred, redMask, greenMask, redOpened, greenOpened, redClosed, greenClosed;
+    vector<vector<Point>> redContourList, greenContourList;
+    Mat redContours = Mat::zeros(frame.size(), CV_8UC3);
+    Mat greenContours = Mat::zeros(frame.size(), CV_8UC3);
 
     // 高斯模糊
     cv::GaussianBlur(frame, blurred, cv::Size(5, 5), 0);
@@ -41,9 +44,13 @@ int *TrafficLight02::Read(Mat frame)
     cv::morphologyEx(redOpened, redClosed, cv::MORPH_CLOSE, kernel);
     cv::morphologyEx(greenOpened, greenClosed, cv::MORPH_CLOSE, kernel);
 
-    // // 边缘检测处理后的红绿mask
-    // Canny(redClosed, redContours ,100 ,200);
-    // Canny(greenClosed, greenContours, 100, 200);
+    // 从闭运算结果中提取轮廓
+    cv::findContours(redClosed.clone(), redContourList, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+    cv::findContours(greenClosed.clone(), greenContourList, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+
+    // 绘制轮廓
+    cv::drawContours(redContours, redContourList, -1, cv::Scalar(0, 0, 255), 2);
+    cv::drawContours(greenContours, greenContourList, -1, cv::Scalar(0, 255, 0), 2);
 
     // 统计红色和绿色像素数量
     int redCount = countNonZero(redClosed);
@@ -52,6 +59,8 @@ int *TrafficLight02::Read(Mat frame)
     // 显示结果
     imshow("Red Mask", redClosed);
     imshow("Green Mask", greenClosed);
+    imshow("Red Contours", redContours);
+    imshow("Green Contours", greenContours);
 
     int *result = new int[2];
     result[0] = redCount;
