@@ -22,7 +22,7 @@ private:
     // cv::Scalar greenScalarLow_ = cv::Scalar(200, 230, 230);
     // cv::Scalar greenScalarHigh_ = cv::Scalar(240, 255, 255);
 
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(2, 2));
 
 public:
     TrafficLight02();

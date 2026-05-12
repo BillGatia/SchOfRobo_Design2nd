@@ -22,7 +22,7 @@ TrafficLight02::~TrafficLight02()
 
 int *TrafficLight02::Read(Mat frame)
 {
-    Mat blurred, redMask, greenMask, redOpened, greenOpened;
+    Mat blurred, redMask, greenMask, redOpened, greenOpened ,redClosed , greenClosed , redContours, greenContours;
 
     // 高斯模糊
     cv::GaussianBlur(frame, blurred, cv::Size(5, 5), 0);
@@ -37,13 +37,21 @@ int *TrafficLight02::Read(Mat frame)
     cv::morphologyEx(redMask, redOpened, cv::MORPH_OPEN, kernel);
     cv::morphologyEx(greenMask, greenOpened, cv::MORPH_OPEN, kernel);
 
+    // 闭运算去补小孔
+    cv::morphologyEx(redOpened, redClosed, cv::MORPH_CLOSE, kernel);
+    cv::morphologyEx(greenOpened, greenClosed, cv::MORPH_CLOSE, kernel);
+
+    // // 边缘检测处理后的红绿mask
+    // Canny(redClosed, redContours ,100 ,200);
+    // Canny(greenClosed, greenContours, 100, 200);
+
     // 统计红色和绿色像素数量
-    int redCount = countNonZero(redOpened);
-    int greenCount = countNonZero(greenOpened);
+    int redCount = countNonZero(redClosed);
+    int greenCount = countNonZero(greenClosed);
 
     // 显示结果
-    imshow("Red Mask", redOpened);
-    imshow("Green Mask", greenOpened);
+    imshow("Red Mask", redClosed);
+    imshow("Green Mask", greenClosed);
 
     int *result = new int[2];
     result[0] = redCount;
