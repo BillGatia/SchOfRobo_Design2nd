@@ -73,57 +73,57 @@ CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: ../main.cpp
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bill/ProjectDesign2/SchOfRobo_Design2nd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp > CMakeFiles/main.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
 CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp -o CMakeFiles/main.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 CMakeFiles/main.dir/Operation/Operation.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Operation/Operation.cpp.o: ../Operation/Operation.cpp
 CMakeFiles/main.dir/Operation/Operation.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bill/ProjectDesign2/SchOfRobo_Design2nd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/Operation/Operation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/Operation/Operation.cpp.o -MF CMakeFiles/main.dir/Operation/Operation.cpp.o.d -o CMakeFiles/main.dir/Operation/Operation.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/Operation/Operation.cpp.o -MF CMakeFiles/main.dir/Operation/Operation.cpp.o.d -o CMakeFiles/main.dir/Operation/Operation.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp
 
 CMakeFiles/main.dir/Operation/Operation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Operation/Operation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp > CMakeFiles/main.dir/Operation/Operation.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp > CMakeFiles/main.dir/Operation/Operation.cpp.i
 
 CMakeFiles/main.dir/Operation/Operation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Operation/Operation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp -o CMakeFiles/main.dir/Operation/Operation.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/Operation/Operation.cpp -o CMakeFiles/main.dir/Operation/Operation.cpp.s
 
 CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o: ../BlackLine01/BlackLine.cpp
 CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bill/ProjectDesign2/SchOfRobo_Design2nd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o -MF CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o.d -o CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o -MF CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o.d -o CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp
 
 CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp > CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp > CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.i
 
 CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp -o CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/BlackLine01/BlackLine.cpp -o CMakeFiles/main.dir/BlackLine01/BlackLine.cpp.s
 
 CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o: ../TrafficLight02/TrafficLight02.cpp
 CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bill/ProjectDesign2/SchOfRobo_Design2nd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o -MF CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o.d -o CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o -MF CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o.d -o CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.o -c /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp
 
 CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp > CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp > CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.i
 
 CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp -o CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bill/ProjectDesign2/SchOfRobo_Design2nd/TrafficLight02/TrafficLight02.cpp -o CMakeFiles/main.dir/TrafficLight02/TrafficLight02.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
