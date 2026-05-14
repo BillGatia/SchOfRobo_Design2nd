@@ -14,25 +14,30 @@ int main()
     //BlackLine bl;
     TrafficLight02 tl;
 
-    VideoCapture cap(1);
+    VideoCapture cap(2);
     Mat frame;
     Mat frame_BL, frame_TL;
 
     while (true)
     {
         cap >> frame;
-        resize(frame, frame, Size(480, 640));
-        if (frame.empty() || !cap.isOpened() || !cap.read(frame))
+        if (frame.empty() || !cap.isOpened())
             break;
+        
+        Mat resizedFrame;
+        resize(frame, resizedFrame, Size(640, 480));
+        frame = resizedFrame;
+
+        const int frameWidth = frame.cols;
 
         //op01.SetFrame(frame);
         op02.SetFrame(frame);
         //op01.Cut(0, 200, 640, 200);
         //frame_BL = op01.ReturnFrame();
-        op02.Cut(0, 0, 640, 200);
+        op02.Cut(0, 0, frameWidth, 200);
         frame_TL = op02.ReturnFrame();
-        rectangle(frame, Rect(0, 200, 640, 200), Scalar(0, 255, 0), 2);
-        //rectangle(frame, Rect(0, 0, 640, 200), Scalar(255, 0, 0), 2);
+        rectangle(frame, Rect(0, 200, frameWidth, 200), Scalar(0, 255, 0), 2);
+        rectangle(frame, Rect(0, 0, frameWidth, 200), Scalar(255, 0, 0), 2);
 
         // 红绿灯检测，逻辑部分（使用 tl 对象，处理帧为 frame_TL）
         int *tl_result = tl.Read(frame_TL);
