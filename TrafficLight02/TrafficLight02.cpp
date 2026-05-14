@@ -22,19 +22,24 @@ TrafficLight02::~TrafficLight02()
 
 int *TrafficLight02::Read(Mat frame)
 {
-    Mat blurred, redMask, greenMask, redOpened, greenOpened, redClosed, greenClosed;
+    Mat blurred, redMask, greenMask, greenReflectMask, redOpened, greenOpened, redClosed, greenClosed;
     vector<vector<Point>> redContourList, greenContourList;
     Mat redContours = Mat::zeros(frame.size(), CV_8UC3);
     Mat greenContours = Mat::zeros(frame.size(), CV_8UC3);
 
     // 高斯模糊
     cv::GaussianBlur(frame, blurred, cv::Size(5, 5), 0);
+    cv::cvtColor(blurred, blurred, cv::COLOR_BGR2HSV);
 
-    // 使用BGR颜色空间进行红色检测
-    // 注意：OpenCV的BGR顺序，所以红色是第三个通道
+    // 使用HSV颜色空间进行红色检测
     inRange(blurred, redScalarLow_, redScalarHigh_, redMask);
-    // 使用BGR颜色空间进行绿色检测
+    // 使用HSV颜色空间进行绿色检测
     inRange(blurred, greenScalarLow_, greenScalarHigh_, greenMask);
+    if(greenReflectScalarLow_ != Scalar(0, 0, 0) && greenReflectScalarHigh_ != Scalar(0, 0, 0))
+    {
+        inRange(blurred, greenReflectScalarLow_, greenReflectScalarHigh_, greenReflectMask);
+        bitwise_or(greenMask, greenReflectMask, greenMask);
+    }
 
     // 开运算去除噪声
     cv::morphologyEx(redMask, redOpened, cv::MORPH_OPEN, kernel);
