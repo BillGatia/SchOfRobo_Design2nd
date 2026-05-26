@@ -18,7 +18,7 @@ Uart::Uart(const char *port, int baudrate)
 
 void Uart::Send(const char *data)
 {
-    data_ = const_cast<char *>(data);
+    // data_ = const_cast<char *>(data);
     const char *port = port_;
 
     int fd = open(port, O_RDWR | O_NOCTTY | O_NONBLOCK);
@@ -38,7 +38,7 @@ void Uart::Send(const char *data)
     tty.c_cc[VTIME] = 10;
     tcsetattr(fd, TCSANOW, &tty);
 
-    write(fd, data_, strlen(data_));
-    // std::cout << "发送: " << data_;
+    write(fd, data, strlen(data));
+    std::cout << "发送: " << data;
     close(fd);
 }

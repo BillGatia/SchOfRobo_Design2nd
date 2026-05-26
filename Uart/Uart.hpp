@@ -8,7 +8,7 @@
 class Uart
 {
 private:
-    char *data_;
+    char char *data_;
     const char *port_ = "/dev/ttyAMA0";
     int baudrate_ = 115200;
 
