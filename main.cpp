@@ -3,6 +3,8 @@
 #include "./TrafficLight02/TrafficLight02.hpp"
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include "./QRcode/QRcode.hpp"
+#include "./Uart/Uart.hpp"
 
 using namespace cv;
 using namespace std;
@@ -19,6 +21,10 @@ int main()
     Mat frame_BL;
     Mat frame_TL;
 
+    // 以下为树莓派二维码和串口部分
+    QRcode qrCode01;
+    Uart uart01;
+
     while (true)
     {
         cap >> frame;
@@ -26,6 +32,20 @@ int main()
 
         if (frame.empty())
             break;
+
+        if (qrCode01.QRflag == 0) // 如果QRflag为0，表示需要识别二维码
+        {
+            // 识别二维码
+            string QRresult = qrCode01.Read(Camera);
+            if (QRresult != "a_")
+            {
+                uart01.Send(QRresult.c_str());
+                cout << QRresult.c_str() << endl;
+            }
+
+            //
+            qrCode01.QRflag = 0; // 设置QRflag为0，为了可以一直识别二维码调试。
+        }
 
         // op01.SetFrame(frame);
         op02.SetFrame(frame);
@@ -38,14 +58,21 @@ int main()
 
         // 红绿灯检测，逻辑部分（使用 tl 对象，处理帧为 frame_TL）
         int *tl_result = tl.Read(frame_TL);
+        char temp[1] = {N}; // 定义一个长度为1的字符数组来存储结果
         if (tl_result != nullptr)
         {
             if (tl_result[0] > 2000)
                 cout << "Red Light Detected" << tl_result[0] << endl;
+            temp = {'R'};
+            uart01.Send(temp);
             else if (tl_result[1] > 2000)
-                cout << "Green Light Detected" << tl_result[1] << endl;
-            else
-                cout << "dont Detected" << endl;
+                    cout
+                << "Green Light Detected" << tl_result[1] << endl;
+            temp = {'G'};
+            uart01.Send(temp);
+            else cout << "dont Detected" << endl;
+            temp = {'N'};
+            uart01.Send(temp);
             delete[] tl_result;
         }
         // 注意：该模块已经在cmake里面删除，记得要加回来。
