@@ -13,7 +13,7 @@ find_package(OpenCV REQUIRED)
 #add_executable(main main.cpp Operation.cpp OnnxRunTime.cpp QRcode.cpp  Uart.cpp )
 add_executable(main main.cpp 
                 ./Operation/Operation.cpp 
-                ./BlackLine01/BlackLine.cpp 
+                # ./BlackLine01/BlackLine.cpp 
                 ./TrafficLight02/TrafficLight02.cpp
 )
 

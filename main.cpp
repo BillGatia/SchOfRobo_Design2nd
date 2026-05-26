@@ -14,7 +14,7 @@ int main()
     // BlackLine bl;
     TrafficLight02 tl;
 
-    VideoCapture cap(1);
+    VideoCapture cap(1); // window要用1，linux要用2
     Mat frame;
     Mat frame_BL;
     Mat frame_TL;
@@ -23,7 +23,8 @@ int main()
     {
         cap >> frame;
         resize(frame, frame, Size(640, 480));
-        if (frame.empty() || !cap.isOpened())
+
+        if (frame.empty())
             break;
 
         // op01.SetFrame(frame);
@@ -47,12 +48,12 @@ int main()
                 cout << "dont Detected" << endl;
             delete[] tl_result;
         }
-
-        // // 黑线检测，逻辑部分（使用 bl 对象，处理帧为 frame_BL）
-        // frame_BL = bl.Perprocess(frame_BL);
-        // int *bl_result = bl.LocateLine03(frame_BL, 5);
-        // if (bl_result != nullptr)
-        //     delete[] bl_result;
+        // 注意：该模块已经在cmake里面删除，记得要加回来。
+        //  // 黑线检测，逻辑部分（使用 bl 对象，处理帧为 frame_BL）
+        //  frame_BL = bl.Perprocess(frame_BL);
+        //  int *bl_result = bl.LocateLine03(frame_BL, 5);
+        //  if (bl_result != nullptr)
+        //      delete[] bl_result;
 
         imshow("Frame", frame);
 
