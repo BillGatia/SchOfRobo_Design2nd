@@ -40,10 +40,10 @@ int main()
         int *tl_result = tl.Read(frame_TL);
         if (tl_result != nullptr)
         {
-            if (tl_result[0] > 100)
-                cout << "Red Light Detected" << endl;
-            else if (tl_result[1] > 100)
-                cout << "Green Light Detected" << endl;
+            if (tl_result[0] > 2000)
+                cout << "Red Light Detected" << tl_result[0] << endl;
+            else if (tl_result[1] > 2000)
+                cout << "Green Light Detected" << tl_result[1] << endl;
             else
                 cout << "dont Detected" << endl;
             delete[] tl_result;
