@@ -30,6 +30,11 @@ private:
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
 
 public:
+    // 可调参数：最小连通域面积（避免小噪声）
+    double minContourArea_ = 200.0;
+    // 可调参数：轮廓圆形度阈值（1为完美圆）
+    double minCircularity_ = 0.7;
+
     TrafficLight02();
     TrafficLight02(cv::Scalar redScalarLow,
                    cv::Scalar redScalarHigh,
@@ -38,4 +43,5 @@ public:
 
     ~TrafficLight02();
     int *Read(cv::Mat frame);
+    int *ReadCircleFiltered(cv::Mat frame);
 };
