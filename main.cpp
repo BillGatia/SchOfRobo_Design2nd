@@ -4,6 +4,10 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <deque>
+#include "./QRCode/QRcode.hpp"
+#include "./Uart/Uart.hpp"
+#include <thread> //用于延时
+#include <chrono>
 
 using namespace cv;
 using namespace std;
@@ -16,22 +20,26 @@ int main()
     TrafficLight02 tl;
 
     // 可调参数：连通域最小面积
-    tl.minContourArea_ = 200.0;
+    tl.minContourArea_ = 10.0;
     // 可调参数：圆形度阈值
-    tl.minCircularity_ = 0.7;
+    tl.minCircularity_ = 0.0;
 
     // 可调参数：像素阈值与多数投票窗口
-    const int kRedPixelThreshold = 2000;
-    const int kGreenPixelThreshold = 2000;
-    const int kVoteWindowSize = 5;   // 3 或 5
-    const int kVoteMinCount = 3;     // 多数阈值，窗口为5时建议3
+    const int kRedPixelThreshold = 500;
+    const int kGreenPixelThreshold = 500;
+    const int kVoteWindowSize = 5; // 3 或 5
+    const int kVoteMinCount = 3;   // 多数阈值，窗口为5时建议3
 
     std::deque<int> voteHistory; // 0: none, 1: red, 2: green
 
-    VideoCapture cap(1); // window要用1，linux要用2
+    VideoCapture cap(0); // window要用1，linux要用2
     Mat frame;
     Mat frame_BL;
     Mat frame_TL;
+
+    // 以下为树莓派二维码和串口部分
+    QRcode qrCode01;
+    Uart uart01;
 
     while (true)
     {
@@ -40,6 +48,20 @@ int main()
 
         if (frame.empty())
             break;
+
+        if (qrCode01.QRflag == 0) // 如果QRflag为0，表示需要识别二维码
+        {
+            // 识别二维码
+            string QRresult = qrCode01.Read(frame);
+            if (QRresult != "a_")
+            {
+                uart01.Send(QRresult.c_str());
+                cout << QRresult.c_str() << endl;
+            }
+
+            //
+            qrCode01.QRflag = 0; // 设置QRflag为0，为了可以一直识别二维码调试。
+        }
 
         // op01.SetFrame(frame);
         op02.SetFrame(frame);
@@ -72,13 +94,28 @@ int main()
                 else if (s == 2)
                     greenVotes++;
             }
-
             if (redVotes >= kVoteMinCount)
+            {
                 cout << "Red Light Detected " << tl_result[0] << endl;
+                char bufR[2] = {'R', '\0'};
+                const char *tempR = bufR;
+                uart01.Send(tempR);
+            }
             else if (greenVotes >= kVoteMinCount)
+            {
                 cout << "Green Light Detected " << tl_result[1] << endl;
+                char bufG[2] = {'G', '\0'};
+                const char *tempG = bufG;
+                uart01.Send(tempG);
+            }
             else
-                cout << "dont Detected" << endl;
+            {
+                cout << "dont Detected  " << tl_result[0] << " || " << tl_result[1] <<endl;
+                char bufN[2] = {'N', '\0'};
+                const char *tempN = bufN;
+                uart01.Send(tempN);
+            }
+
             delete[] tl_result;
         }
         // 注意：该模块已经在cmake里面删除，记得要加回来。
@@ -88,10 +125,12 @@ int main()
         //  if (bl_result != nullptr)
         //      delete[] bl_result;
 
-        imshow("Frame", frame);
+        // imshow("Frame", frame);
 
-        if (waitKey(30) == 27) // 按 'q' 或 'ESC' 键退出
-            break;
+        // if (waitKey(30) == 27) // 按 'q' 或 'ESC' 键退出
+        //     break;
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
     cap.release();

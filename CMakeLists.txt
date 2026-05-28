@@ -15,6 +15,8 @@ add_executable(main main.cpp
                 ./Operation/Operation.cpp 
                 # ./BlackLine01/BlackLine.cpp 
                 ./TrafficLight02/TrafficLight02.cpp
+                ./Uart/Uart.cpp
+                ./QRCode/QRcode.cpp
 )
 
 # 3. 链接库

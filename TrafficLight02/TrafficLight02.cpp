@@ -37,7 +37,7 @@ int *TrafficLight02::Read(Mat frame)
     inRange(blurred, redScalarLow_, redScalarHigh_, redMask);
     // 使用HSV颜色空间进行绿色检测
     inRange(blurred, greenScalarLow_, greenScalarHigh_, greenMask);
-    if(greenReflectScalarLow_ != Scalar(0, 0, 0) && greenReflectScalarHigh_ != Scalar(0, 0, 0))
+    if (greenReflectScalarLow_ != Scalar(0, 0, 0) && greenReflectScalarHigh_ != Scalar(0, 0, 0))
     {
         inRange(blurred, greenReflectScalarLow_, greenReflectScalarHigh_, greenReflectMask);
         bitwise_or(greenMask, greenReflectMask, greenMask);
@@ -81,11 +81,11 @@ int *TrafficLight02::Read(Mat frame)
     int redCount = countNonZero(redFilteredMask);
     int greenCount = countNonZero(greenFilteredMask);
 
-    // 显示结果
-    imshow("Red Mask", redFilteredMask);
-    imshow("Green Mask", greenFilteredMask);
-    imshow("Red Contours", redContours);
-    imshow("Green Contours", greenContours);
+    // // 显示结果
+    // imshow("Red Mask", redFilteredMask);
+    // imshow("Green Mask", greenFilteredMask);
+    // imshow("Red Contours", redContours);
+    // imshow("Green Contours", greenContours);
 
     int *result = new int[2];
     result[0] = redCount;
@@ -168,11 +168,11 @@ int *TrafficLight02::ReadCircleFiltered(Mat frame)
     int redCount = countNonZero(redFilteredMask);
     int greenCount = countNonZero(greenFilteredMask);
 
-    // 显示结果
-    imshow("Red Mask", redFilteredMask);
-    imshow("Green Mask", greenFilteredMask);
-    imshow("Red Contours", redContours);
-    imshow("Green Contours", greenContours);
+    // // 显示结果
+    // imshow("Red Mask", redFilteredMask);
+    // imshow("Green Mask", greenFilteredMask);
+    // imshow("Red Contours", redContours);
+    // imshow("Green Contours", greenContours);
 
     int *result = new int[2];
     result[0] = redCount;
