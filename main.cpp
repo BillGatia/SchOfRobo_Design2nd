@@ -5,6 +5,8 @@
 #include <iostream>
 #include "./QRCode/QRcode.hpp"
 #include "./Uart/Uart.hpp"
+#include <thread> //用于延时
+#include <chrono>
 
 using namespace cv;
 using namespace std;
@@ -93,8 +95,10 @@ int main()
 
         // imshow("Frame", frame);
 
-        if (waitKey(30) == 27) // 按 'q' 或 'ESC' 键退出
-            break;
+        // if (waitKey(30) == 27) // 按 'q' 或 'ESC' 键退出
+        //     break;
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     cap.release();
