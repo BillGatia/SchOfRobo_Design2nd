@@ -20,13 +20,13 @@ int main()
     TrafficLight02 tl;
 
     // 可调参数：连通域最小面积
-    tl.minContourArea_ = 10.0;
+    tl.minContourArea_ = 500.0;
     // 可调参数：圆形度阈值
-    tl.minCircularity_ = 0.0;
+    tl.minCircularity_ = 0.5;
 
     // 可调参数：像素阈值与多数投票窗口
-    const int kRedPixelThreshold = 500;
-    const int kGreenPixelThreshold = 500;
+    const int kRedPixelThreshold = 3500;
+    const int kGreenPixelThreshold = 3500;
     const int kVoteWindowSize = 5; // 3 或 5
     const int kVoteMinCount = 3;   // 多数阈值，窗口为5时建议3
 
@@ -44,6 +44,7 @@ int main()
     while (true)
     {
         cap >> frame;
+        frame = frame(Rect(120, 0, 400, 300)); // 裁剪为640x200的区域
         resize(frame, frame, Size(640, 480));
 
         if (frame.empty())
@@ -110,7 +111,7 @@ int main()
             }
             else
             {
-                cout << "dont Detected  " << tl_result[0] << " || " << tl_result[1] <<endl;
+                cout << "dont Detected  " << tl_result[0] << " || " << tl_result[1] << endl;
                 char bufN[2] = {'N', '\0'};
                 const char *tempN = bufN;
                 uart01.Send(tempN);
