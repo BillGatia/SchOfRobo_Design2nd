@@ -22,11 +22,11 @@ int main()
     // 可调参数：连通域最小面积
     tl.minContourArea_ = 500.0;
     // 可调参数：圆形度阈值
-    tl.minCircularity_ = 0.5;
+    tl.minCircularity_ = 0.0;
 
     // 可调参数：像素阈值与多数投票窗口
-    const int kRedPixelThreshold = 3500;
-    const int kGreenPixelThreshold = 3500;
+    const int kRedPixelThreshold = 2000;
+    const int kGreenPixelThreshold = 2000;
     const int kVoteWindowSize = 5; // 3 或 5
     const int kVoteMinCount = 3;   // 多数阈值，窗口为5时建议3
 
@@ -56,8 +56,10 @@ int main()
             string QRresult = qrCode01.Read(frame);
             if (QRresult != "a_")
             {
-                uart01.Send(QRresult.c_str());
-                cout << QRresult.c_str() << endl;
+                std::string tempR = QRresult + QRresult;
+                const char *result = tempR.c_str();
+                uart01.Send(result);
+                cout << result << endl;
             }
 
             //
@@ -68,7 +70,7 @@ int main()
         op02.SetFrame(frame);
         // op01.Cut(0, 200, 640, 200);
         // frame_BL = op01.ReturnFrame();
-        op02.Cut(0, 0, 640, 200);
+        //op02.Cut(0, 0, 640, 200);
         frame_TL = op02.ReturnFrame();
         // rectangle(frame, Rect(0, 200, 640, 200), Scalar(0, 255, 0), 2);
         rectangle(frame, Rect(0, 0, 640, 200), Scalar(255, 0, 0), 2);
@@ -98,21 +100,21 @@ int main()
             if (redVotes >= kVoteMinCount)
             {
                 cout << "Red Light Detected " << tl_result[0] << endl;
-                char bufR[2] = {'R', '\0'};
+                char bufR[] = "b_RRRR";
                 const char *tempR = bufR;
                 uart01.Send(tempR);
             }
             else if (greenVotes >= kVoteMinCount)
             {
                 cout << "Green Light Detected " << tl_result[1] << endl;
-                char bufG[2] = {'G', '\0'};
+                char bufG[] = "b_GGGG";
                 const char *tempG = bufG;
                 uart01.Send(tempG);
             }
             else
             {
                 cout << "dont Detected  " << tl_result[0] << " || " << tl_result[1] << endl;
-                char bufN[2] = {'N', '\0'};
+                char bufN[] = "b_NNNN";
                 const char *tempN = bufN;
                 uart01.Send(tempN);
             }
