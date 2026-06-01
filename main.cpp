@@ -8,6 +8,7 @@
 #include "./Uart/Uart.hpp"
 #include <thread> //用于延时
 #include <chrono>
+#include <cstdlib>
 
 using namespace cv;
 using namespace std;
@@ -49,6 +50,8 @@ int main()
 
         if (frame.empty())
             break;
+        // imshow("Frame", frame);
+        // waitKey(1);
 
         if (qrCode01.QRflag == 0) // 如果QRflag为0，表示需要识别二维码
         {
@@ -56,10 +59,12 @@ int main()
             string QRresult = qrCode01.Read(frame);
             if (QRresult != "a_")
             {
-                std::string tempR = QRresult + QRresult;
+                std::string tempR = QRresult;
                 const char *result = tempR.c_str();
                 uart01.Send(result);
                 cout << result << endl;
+
+                system("aplay -D hw:2,0 ../audios/first_get.wav");
             }
 
             //
@@ -70,7 +75,7 @@ int main()
         op02.SetFrame(frame);
         // op01.Cut(0, 200, 640, 200);
         // frame_BL = op01.ReturnFrame();
-        //op02.Cut(0, 0, 640, 200);
+        // op02.Cut(0, 0, 640, 200);
         frame_TL = op02.ReturnFrame();
         // rectangle(frame, Rect(0, 200, 640, 200), Scalar(0, 255, 0), 2);
         rectangle(frame, Rect(0, 0, 640, 200), Scalar(255, 0, 0), 2);
@@ -102,7 +107,7 @@ int main()
                 cout << "Red Light Detected " << tl_result[0] << endl;
                 char bufR[] = "b_RRRR";
                 const char *tempR = bufR;
-                uart01.Send(tempR);
+                // uart01.Send(tempR);
             }
             else if (greenVotes >= kVoteMinCount)
             {
@@ -116,7 +121,7 @@ int main()
                 cout << "dont Detected  " << tl_result[0] << " || " << tl_result[1] << endl;
                 char bufN[] = "b_NNNN";
                 const char *tempN = bufN;
-                uart01.Send(tempN);
+                // uart01.Send(tempN);
             }
 
             delete[] tl_result;
@@ -133,7 +138,7 @@ int main()
         // if (waitKey(30) == 27) // 按 'q' 或 'ESC' 键退出
         //     break;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 
     cap.release();
