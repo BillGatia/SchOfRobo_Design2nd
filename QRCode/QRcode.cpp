@@ -25,5 +25,5 @@ string QRcode::Read(cv::Mat AimFrame)
     {
     }
 
-    return "a_" + data;
+    return data;
 }

@@ -40,6 +40,7 @@ int main()
 
     // 以下为树莓派二维码和串口部分
     QRcode qrCode01;
+    int QRflag_main = 1;//1代表扫描完后播放get，2代表扫描完后播放put
     Uart uart01;
 
     while (true)
@@ -57,14 +58,37 @@ int main()
         {
             // 识别二维码
             string QRresult = qrCode01.Read(frame);
-            if (QRresult != "a_")
+            // std::string tempR = QRresult;
+
+            if (! QRresult.empty())
             {
-                std::string tempR = QRresult;
-                const char *result = tempR.c_str();
+                QRresult = "a_" + QRresult +QRresult;
+
+                const char *result = QRresult.c_str();
                 uart01.Send(result);
                 cout << result << endl;
 
-                system("aplay -D hw:2,0 ../audios/first_get.wav");
+                if(QRresult[2] == '1' && QRflag_main ==1)
+                {
+                    system("aplay -D hw:2,0 ../audios/first_get.wav");
+                    QRflag_main = 2;
+                }
+                else if(QRresult[2] == '2' && QRflag_main ==1)
+                {
+                    system("aplay -D hw:2,0 ../audios/second_get.wav");
+                    QRflag_main = 2;
+                }
+                else if(QRresult[3] == '1' && QRflag_main ==2)
+                {
+                    system("aplay -D hw:2,0 ../audios/first_put.wav");
+                    QRflag_main = 1;
+                }
+                else if(QRresult[3] == '2' && QRflag_main ==2)
+                {
+                    system("aplay -D hw:2,0 ../audios/second_put.wav");
+                    QRflag_main = 1;
+                }
+                // system("aplay -D hw:2,0 ../audios/first_get.wav");
             }
 
             //
