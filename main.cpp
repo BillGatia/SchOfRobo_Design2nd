@@ -23,13 +23,13 @@ int main()
     // 可调参数：连通域最小面积
     tl.minContourArea_ = 500.0;
     // 可调参数：圆形度阈值
-    tl.minCircularity_ = 0.0;
+    tl.minCircularity_ = 0.5;
 
     // 可调参数：像素阈值与多数投票窗口
     const int kRedPixelThreshold = 2000;
-    const int kGreenPixelThreshold = 2000;
-    const int kVoteWindowSize = 5; // 3 或 5
-    const int kVoteMinCount = 3;   // 多数阈值，窗口为5时建议3
+    const int kGreenPixelThreshold = 1800;
+    const int kVoteWindowSize = 1; // 3 或 5
+    const int kVoteMinCount = 1;   // 多数阈值，窗口为5时建议3
 
     std::deque<int> voteHistory; // 0: none, 1: red, 2: green
 
@@ -40,7 +40,8 @@ int main()
 
     // 以下为树莓派二维码和串口部分
     QRcode qrCode01;
-    int QRflag_main = 1;//1代表扫描完后播放get，2代表扫描完后播放put
+    int QRflag_main = 1;      // 1代表扫描完后播放get，2代表扫描完后播放put
+    char QRLeftorRight = '0'; // 1代表左边，2代表右边
     Uart uart01;
 
     while (true)
@@ -60,32 +61,34 @@ int main()
             string QRresult = qrCode01.Read(frame);
             // std::string tempR = QRresult;
 
-            if (! QRresult.empty())
+            if (!QRresult.empty())
             {
-                QRresult = "a_" + QRresult +QRresult;
+                QRresult = "a_" + QRresult + QRresult;
+
+                QRLeftorRight = QRresult[3];
 
                 const char *result = QRresult.c_str();
                 uart01.Send(result);
                 cout << result << endl;
 
-                if(QRresult[2] == '1' && QRflag_main ==1)
+                if (QRresult[2] == '1' && QRflag_main == 1) // 物体一抓取
                 {
-                    system("aplay -D hw:2,0 ../audios/first_get.wav");
+                    system("aplay -D hw:2,0 ../audios/item01_in.wav");
                     QRflag_main = 2;
                 }
-                else if(QRresult[2] == '2' && QRflag_main ==1)
+                else if (QRresult[2] == '2' && QRflag_main == 1) // 物体二抓取
                 {
-                    system("aplay -D hw:2,0 ../audios/second_get.wav");
+                    system("aplay -D hw:2,0 ../audios/item02_in.wav");
                     QRflag_main = 2;
                 }
-                else if(QRresult[3] == '1' && QRflag_main ==2)
+                else if (QRresult[3] == '1' && QRflag_main == 2) // 位置一（左）放置
                 {
-                    system("aplay -D hw:2,0 ../audios/first_put.wav");
+                    system("aplay -D hw:2,0 ../audios/item01_out.wav");
                     QRflag_main = 1;
                 }
-                else if(QRresult[3] == '2' && QRflag_main ==2)
+                else if (QRresult[3] == '2' && QRflag_main == 2) // 位置二（右）放置
                 {
-                    system("aplay -D hw:2,0 ../audios/second_put.wav");
+                    system("aplay -D hw:2,0 ../audios/item02_out.wav");
                     QRflag_main = 1;
                 }
                 // system("aplay -D hw:2,0 ../audios/first_get.wav");
@@ -102,7 +105,7 @@ int main()
         // op02.Cut(0, 0, 640, 200);
         frame_TL = op02.ReturnFrame();
         // rectangle(frame, Rect(0, 200, 640, 200), Scalar(0, 255, 0), 2);
-        rectangle(frame, Rect(0, 0, 640, 200), Scalar(255, 0, 0), 2);
+        // rectangle(frame, Rect(0, 0, 640, 200), Scalar(255, 0, 0), 2);
 
         // 红绿灯检测，逻辑部分（使用 tl 对象，处理帧为 frame_TL）
         int *tl_result = tl.ReadCircleFiltered(frame_TL);
@@ -139,6 +142,17 @@ int main()
                 char bufG[] = "b_GGGG";
                 const char *tempG = bufG;
                 uart01.Send(tempG);
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+
+                if (QRLeftorRight == '1' && QRflag_main == 2) // 现在在位置一（左边）
+                {
+                    system("aplay -D hw:2,0 ../audios/place01.wav");
+                }
+                else if (QRLeftorRight == '2' && QRflag_main == 2) // 现在在位置二（右边）
+                {
+                    system("aplay -D hw:2,0 ../audios/place02.wav");
+                }
             }
             else
             {
